@@ -3,7 +3,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "EP1C", HidePremium = false, SaveConfig = true, ConfigFolder = "configs", IntroEnabled = true, IntroText = "shit" })
 
 
-local Tab = Windwow:MakeTab({
+local Tab = Window:MakeTab({
 	Name = "Tab 1",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
