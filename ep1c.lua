@@ -1,65 +1,51 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "EP1C", HidePremium = false, SaveConfig = true, ConfigFolder = "configs", IntroEnabled = true, IntroText = "shit" })
+local Window = OrionLib:MakeWindow({Name = "EP1C", HidePremium = false, SaveConfig = true, ConfigFolder = "configs", IntroEnabled = false })
 
 
-local Tab = Window:MakeTab({
-	Name = "Tab 1",
-	Icon = "rbxassetid://4483345998",
+local Basic = Window:MakeTab({
+	Name = "Basic",
+--	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
-local Section = Tab:AddSection({
-	Name = "Section"
+local Section = Basic:AddSection({
+	Name = "LocalHost Stuff"
 })
 
 OrionLib:MakeNotification({
-	Name = "poopy!!!!!!!!",
-	Content = "poop fart face!!!",
-	Image = "rbxassetid://4483345998",
-	Time = 5
+	Name = "THIS SCRIPT ISNT VERY GOOD!!!!",
+	Content = "It is very new and basically unusable. Use DomainX if you want something actually useful and usable.",
+--	Image = "rbxassetid://4483345998",
+	Time = 10
 })
 
-Tab:AddButton({
-	Name = "Button!",
-	Callback = function()
-      		print("button pressed")
-  	end    
-})
 
-Tab:AddToggle({
-	Name = "This is a toggle!",
+Basic:AddToggle({
+	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
 		print(Value)
 	end    
 })
 
-local ColorPicker = Tab:AddColorpicker({
-	Name = "ColorPicker",
-	Default = Color3.fromRGB(255, 0, 0),
-	Callback = function(Value)
-		print(Value)
-	end	  
-})
 
-ColorPicker:Set(Color3.fromRGB(255,255,255))
-
-Tab:AddSlider({
-	Name = "Slider",
-	Min = 0,
-	Max = 20,
-	Default = 5,
+Basic:AddSlider({
+	Name = "Walkspeed",
+	Min = 16,
+	Max = 500,
+	Default = 16,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
-	ValueName = "bananas",
+--	ValueName = "",
 	Callback = function(Value)
-		print(Value)
+		getgenv().WalkSpeedValue = Value; --set your desired walkspeed here
+        local Player = game:service'Players'.LocalPlayer;
+        Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
+        end)
+        Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
 	end    
 })
-
-Tab:AddLabel("Label")
-
-Tab:AddParagraph("Paragraph","Paragraph Content")
 
 OrionLib:Init()
